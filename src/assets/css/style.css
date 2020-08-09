@@ -643,7 +643,8 @@ ol {
   height: 50px;
   border: 1px solid #ebebeb;
   position: relative;
-  float: left;
+  float: right;
+  margin-right: 45px;
 }
 
 .hero__search__form form .hero__search__categories {
