@@ -4,13 +4,12 @@ export class product_schema {
   isDeleted: { type: Boolean; default: false };
   name: String;
   category: String;
-  color: [];
-  unitprice: Number;
+  price: Number;
   stockNumber: Number;
   pictures: [];
   description: String;
   tag: [];
-  size: [];
+  size: String;
   sort: Number;
   code: String;
 }
