@@ -13,6 +13,7 @@ import { HeaderComponent } from './home/header/header.component';
 import { HeroComponent } from './home/hero/hero.component';
 import { CategoriesComponent } from './home/categories/categories.component';
 import { BlogComponent } from './home/blog/blog.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { BlogComponent } from './home/blog/blog.component';
     HeroComponent,
     CategoriesComponent,
     BlogComponent,
+    AdminComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
