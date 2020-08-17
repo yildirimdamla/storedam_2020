@@ -11,4 +11,8 @@ export class ProductsService {
   GetAllProducts(): any {
     return this._http.get(environment.apiurl + '/product/list');
   }
+  DeleteProduct(id): any {
+    console.log('hel');
+    return this._http.post(environment.apiurl + '/product/delete/' + id, '');
+  }
 }

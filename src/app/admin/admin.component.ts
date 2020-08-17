@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/services/products.service';
 
-import { product_schema } from 'src/models/product_model';
+import {
+  product_schema,
+  columnlist,
+  tableoperations,
+} from 'src/models/product_model';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-admin',
@@ -10,12 +15,26 @@ import { product_schema } from 'src/models/product_model';
 })
 export class AdminComponent implements OnInit {
   product_list: product_schema[];
+  searchTetxtBinding: string;
+  columnlist = columnlist;
+  sortbycolumn(item) {
+    tableoperations.sortbyString(item, this.product_list);
+  }
+  deleteProductButton(product) {
+    this._productsService.DeleteProduct(product._id).subscribe((res) => {
+      this.Load();
+    });
+  }
 
-  constructor(private _productsService: ProductsService) {}
-  ngOnInit(): void {
+  Load() {
     this._productsService.GetAllProducts().subscribe((res) => {
       this.product_list = res;
       console.log(this.product_list);
     });
+  }
+
+  constructor(private _productsService: ProductsService) {}
+  ngOnInit(): void {
+    this.Load();
   }
 }
