@@ -17,6 +17,14 @@ export class AdminComponent implements OnInit {
   product_list: product_schema[];
   searchTetxtBinding: string;
   columnlist = columnlist;
+  showThisForm = '';
+
+  showForm(product) {
+    this.showThisForm = product._id;
+    var thisProductForm = document.getElementById(product._id);
+
+    console.log(thisProductForm);
+  }
   sortbycolumn(item) {
     tableoperations.sortbyString(item, this.product_list);
   }

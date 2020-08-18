@@ -457,16 +457,6 @@
 
       <!-- Begin Page Content -->
       <div class="container-fluid">
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-        <p class="mb-4">
-          DataTables is a third party plugin that is used to generate the demo
-          table below. For more information about DataTables, please visit the
-          <a target="_blank" href="https://datatables.net"
-            >official DataTables documentation</a
-          >.
-        </p>
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -484,7 +474,7 @@
           <div class="card-body">
             <div class="table-responsive">
               <table
-                class="table table-bordered"
+                class="table table-hover"
                 id="dataTable"
                 width="100%"
                 cellspacing="0"
@@ -493,6 +483,7 @@
                 <thead>
                   <tr>
                     <th
+                      scope="col"
                       (click)="sortbycolumn(column_name)"
                       *ngFor="let column_name of columnlist"
                     >
@@ -503,6 +494,7 @@
                 <tfoot>
                   <tr>
                     <th
+                      scope="col"
                       (click)="sortbycolumn(column_name)"
                       *ngFor="let column_name of columnlist"
                     >
@@ -511,33 +503,191 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <tr *ngFor="let product of product_list">
-                    <td>
-                      {{ product.updatedDate | date: "dd/Mm/yyyy - hh:mm" }}
-                    </td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.category }}</td>
-                    <td>{{ product.price + "₺" }}</td>
-                    <td>{{ product.stockNumber }}</td>
-                    <td class="text-truncate" style="max-width: 150px;">
-                      {{ product.description }}
-                    </td>
-                    <td>{{ product.tag }}</td>
-                    <td>{{ product.size }}</td>
-                    <td><button class="btn btn-primary">Düzenle</button></td>
-                    <td>
-                      <button
-                        (click)="deleteProductButton(product)"
-                        class="btn btn-danger"
+                  <ng-container
+                    style="vertical-align: middle;"
+                    *ngFor="let product of product_list"
+                  >
+                    <tr>
+                      <td>
+                        {{ product.updatedDate | date: "dd/Mm/yyyy - hh:mm" }}
+                      </td>
+                      <td>
+                        {{ product.name }}
+                      </td>
+                      <td>{{ product.category }}</td>
+                      <td>{{ product.price + "₺" }}</td>
+                      <td>{{ product.stockNumber }}</td>
+                      <td class="text-truncate" style="max-width: 300px;">
+                        {{ product.description }}
+                      </td>
+                      <td>{{ product.tag }}</td>
+                      <td>{{ product.size }}</td>
+                      <td>
+                        <button
+                          class="btn btn-primary"
+                          (click)="showForm(product)"
+                        >
+                          Düzenle
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          (click)="deleteProductButton(product)"
+                          class="btn btn-danger"
+                        >
+                          Sil
+                        </button>
+                      </td>
+                    </tr>
+
+                    <td colspan="100%" hidden="true">
+                      <form
+                        id="{{ product._id }}"
+                        *ngIf="showThisForm == product._id"
                       >
-                        Sil
-                      </button>
+                        <div class="form-row">
+                          <div class="col-md-2 mb-2">
+                            <label for="{{ product._id }}_pCode"
+                              >Ürün Kodu</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pCode"
+                              disabled
+                              value="{{ product.code }}"
+                              placeholder="{{ product.code }}"
+                            />
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="{{ product._id }}_pName"
+                              >Ürün Adı</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pName"
+                              required
+                              value="{{ product.name }}"
+                              placeholder="{{ product.name }}"
+                            />
+                          </div>
+                          <div class="col-md-3 mb-2">
+                            <label for="{{ product._id }}_pCategory"
+                              >Kategori</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pCategory"
+                              required
+                              value="{{ product.category }}"
+                              placeholder="{{ product.category }}"
+                            />
+                          </div>
+
+                          <div class="col-md-1 mb-3">
+                            <label for="{{ product._id }}_pSize">Boyut</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pSize"
+                              required
+                              value="{{ product.size }}"
+                              placeholder="{{ product.size }}"
+                            />
+                          </div>
+
+                          <div class="col-md-1 mb-2">
+                            <label for="{{ product._id }}_pPrice">Fiyat</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pPrice"
+                              required
+                              value="{{ product.price }}"
+                              placeholder="{{ product.price }}"
+                            />
+                          </div>
+                          <div class="col-md-1 mb-2">
+                            <label for="{{ product._id }}_pStock">Stok</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pStock"
+                              required
+                              value="{{ product.stock }}"
+                              placeholder="{{ product.stock }}"
+                            />
+                          </div>
+                          <div class="col-md-1 mb-2">
+                            <label for="{{ product._id }}_pSort">Öncelik</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pSort"
+                              required
+                              value="{{ product.sort }}"
+                              placeholder="{{ product.sort }}"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-md-5 mb-3">
+                            <label for="{{ product._id }}_pDescription"
+                              >Açıklama</label
+                            >
+                            <textarea
+                              class="form-control"
+                              id="{{ product._id }}_pDescription"
+                              placeholder="Required textarea"
+                              required
+                              value="{{ product.description }}"
+                              placeholder="{{ product.description }}"
+                            ></textarea>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="{{ product._id }}_pPicture"
+                              >Görsel</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pPicture"
+                              required
+                              value="{{ product.pictures[0] }}"
+                              placeholder="{{ product.pictures[0] }}"
+                            />
+                          </div>
+
+                          <div class="col-md-1 mb-3">
+                            <label for="{{ product._id }}_pTag">Etiket</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="{{ product._id }}_pTag"
+                              required
+                              value="{{ product.tag[0] }}"
+                              placeholder="{{ product.tag[0] }}"
+                            />
+                          </div>
+                          <div
+                            class="col-md-3 mb-3 d-flex align-items-center ml-auto"
+                          >
+                            <button
+                              class="btn btn-primary ml-auto"
+                              type="submit"
+                            >
+                              Değiştir
+                            </button>
+                            <button class="btn btn-primary ml-3">
+                              Vazgeç
+                            </button>
+                          </div>
+                        </div>
+                      </form>
                     </td>
-                    <!-- <td>{{ product.creatingDate }}</td> -->
-                    <!-- <td>{{ product.pictures }}</td> -->
-                    <!-- <td>{{ product.sort }}</td>
-                    <td>{{ product.code }}</td> -->
-                  </tr>
+                  </ng-container>
                 </tbody>
               </table>
             </div>
