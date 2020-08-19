@@ -20,10 +20,13 @@ export class AdminComponent implements OnInit {
   showThisForm = '';
 
   showForm(product) {
-    this.showThisForm = product._id;
-    var thisProductForm = document.getElementById(product._id);
-
-    console.log(thisProductForm);
+    if (this.showThisForm != product._id) {
+      var thisProductForm = document.getElementById(product._id);
+      this.showThisForm = product._id;
+      console.log(thisProductForm);
+    } else {
+      this.showThisForm = '';
+    }
   }
   sortbycolumn(item) {
     tableoperations.sortbyString(item, this.product_list);

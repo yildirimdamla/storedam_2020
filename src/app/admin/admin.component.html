@@ -540,11 +540,12 @@
                       </td>
                     </tr>
 
-                    <td colspan="100%" hidden="true">
-                      <form
-                        id="{{ product._id }}"
-                        *ngIf="showThisForm == product._id"
-                      >
+                    <td
+                      colspan="100%"
+                      id="{{ product._id }}"
+                      *ngIf="showThisForm == product._id"
+                    >
+                      <form>
                         <div class="form-row">
                           <div class="col-md-2 mb-2">
                             <label for="{{ product._id }}_pCode"
