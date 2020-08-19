@@ -11,8 +11,15 @@ export class ProductsService {
   GetAllProducts(): any {
     return this._http.get(environment.apiurl + '/product/list');
   }
-  DeleteProduct(id): any {
+  DeleteProduct(id: string) {
     console.log('hel');
     return this._http.post(environment.apiurl + '/product/delete/' + id, '');
+  }
+  EditProduct(product: product_schema) {
+    console.log('hello');
+    return this._http.post(
+      environment.apiurl + '/product/update/' + product._id,
+      product
+    );
   }
 }

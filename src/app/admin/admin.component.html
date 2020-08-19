@@ -545,131 +545,154 @@
                       id="{{ product._id }}"
                       *ngIf="showThisForm == product._id"
                     >
-                      <form>
+                      <form
+                        #productEditForm="ngForm"
+                        (ngSubmit)="edit(this.editedProduct)"
+                      >
                         <div class="form-row">
                           <div class="col-md-2 mb-2">
-                            <label for="{{ product._id }}_pCode"
-                              >Ürün Kodu</label
-                            >
+                            <label for="_pCode">Ürün Kodu</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pCode"
+                              id="_pCode"
                               disabled
                               value="{{ product.code }}"
                               placeholder="{{ product.code }}"
+                              name="_pCode"
+                              #_pCode="ngModel"
+                              [(ngModel)]="editedProduct.code"
                             />
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="{{ product._id }}_pName"
-                              >Ürün Adı</label
-                            >
+                            <label for="_pName">Ürün Adı</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pName"
+                              id="_pName"
                               required
                               value="{{ product.name }}"
                               placeholder="{{ product.name }}"
+                              name="_pName"
+                              #_pName="ngModel"
+                              [(ngModel)]="editedProduct.name"
                             />
                           </div>
                           <div class="col-md-3 mb-2">
-                            <label for="{{ product._id }}_pCategory"
-                              >Kategori</label
-                            >
+                            <label for="_pCategory">Kategori</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pCategory"
+                              id="_pCategory"
                               required
                               value="{{ product.category }}"
                               placeholder="{{ product.category }}"
+                              name="_pCategory"
+                              #_pCategory="ngModel"
+                              [(ngModel)]="editedProduct.category"
                             />
                           </div>
 
                           <div class="col-md-1 mb-3">
-                            <label for="{{ product._id }}_pSize">Boyut</label>
+                            <label for="_pSize">Boyut</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pSize"
+                              id="_pSize"
                               required
                               value="{{ product.size }}"
                               placeholder="{{ product.size }}"
+                              name="_pSize"
+                              #_pSize="ngModel"
+                              [(ngModel)]="editedProduct.size"
                             />
                           </div>
 
                           <div class="col-md-1 mb-2">
-                            <label for="{{ product._id }}_pPrice">Fiyat</label>
+                            <label for="_pPrice">Fiyat</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pPrice"
+                              id="_pPrice"
                               required
                               value="{{ product.price }}"
                               placeholder="{{ product.price }}"
+                              name="_pPrice"
+                              #_pPrice="ngModel"
+                              [(ngModel)]="editedProduct.price"
                             />
                           </div>
                           <div class="col-md-1 mb-2">
-                            <label for="{{ product._id }}_pStock">Stok</label>
+                            <label for="_pStock">Stok</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pStock"
+                              id="_pStock"
                               required
                               value="{{ product.stockNumber }}"
                               placeholder="{{ product.stockNumber }}"
+                              name="_pStock"
+                              #_pStock="ngModel"
+                              [(ngModel)]="editedProduct.stockNumber"
                             />
                           </div>
                           <div class="col-md-1 mb-2">
-                            <label for="{{ product._id }}_pSort">Öncelik</label>
+                            <label for="_pSort">Öncelik</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pSort"
+                              id="_pSort"
                               required
                               value="{{ product.sort }}"
                               placeholder="{{ product.sort }}"
+                              name="_pSort"
+                              #_pSort="ngModel"
+                              [(ngModel)]="editedProduct.sort"
                             />
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="col-md-5 mb-3">
-                            <label for="{{ product._id }}_pDescription"
-                              >Açıklama</label
-                            >
+                            <label for="_pDescription">Açıklama</label>
                             <textarea
                               class="form-control"
-                              id="{{ product._id }}_pDescription"
+                              id="_pDescription"
                               placeholder="Required textarea"
                               required
                               value="{{ product.description }}"
                               placeholder="{{ product.description }}"
+                              name="_pDescription"
+                              #_pDescription="ngModel"
+                              [(ngModel)]="editedProduct.description"
                             ></textarea>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="{{ product._id }}_pPicture"
-                              >Görsel</label
-                            >
+                            <label for="_pPicture">Görsel</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pPicture"
+                              id="_pPicture"
                               required
                               value="{{ product.pictures[0] }}"
                               placeholder="{{ product.pictures[0] }}"
+                              name="_pPicture"
+                              #_pPicture="ngModel"
+                              [(ngModel)]="editedProduct.pictures"
                             />
                           </div>
 
                           <div class="col-md-1 mb-3">
-                            <label for="{{ product._id }}_pTag">Etiket</label>
+                            <label for="_pTag">Etiket</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="{{ product._id }}_pTag"
+                              id="_pTag"
                               required
                               value="{{ product.tag[0] }}"
                               placeholder="{{ product.tag[0] }}"
+                              name="_pTag"
+                              #_pTag="ngModel"
+                              [(ngModel)]="editedProduct.tag"
                             />
                           </div>
                           <div

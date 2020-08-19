@@ -7,6 +7,7 @@ import {
   tableoperations,
 } from 'src/models/product_model';
 import { ResourceLoader } from '@angular/compiler';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -15,6 +16,7 @@ import { ResourceLoader } from '@angular/compiler';
 })
 export class AdminComponent implements OnInit {
   product_list: product_schema[];
+  editedProduct = new product_schema();
   searchTetxtBinding: string;
   columnlist = columnlist;
   showThisForm = '';
@@ -22,19 +24,26 @@ export class AdminComponent implements OnInit {
   showForm(product) {
     if (this.showThisForm != product._id) {
       this.showThisForm = product._id;
+      this.editedProduct = product;
     } else {
       this.showThisForm = '';
+      this.editedProduct = new product_schema();
     }
   }
   sortbycolumn(item) {
     tableoperations.sortbyString(item, this.product_list);
   }
-  deleteProductButton(product) {
+  deleteProductButton(product: product_schema) {
     this._productsService.DeleteProduct(product._id).subscribe((res) => {
       this.Load();
     });
   }
-
+  edit(product: product_schema) {
+    this._productsService.EditProduct(product).subscribe((res) => {
+      console.log('tamamdır');
+      this.Load();
+    });
+  }
   Load() {
     this._productsService.GetAllProducts().subscribe((res) => {
       this.product_list = res;

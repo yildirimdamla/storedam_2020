@@ -1,7 +1,8 @@
 export class product_schema {
-  creatingDate: { type: Date; default: Date };
-  updatedDate: { type: Date; default: Date };
-  isDeleted: { type: Boolean; default: false };
+  _id: string;
+  creatingDate: Date;
+  updatedDate: Date;
+  isDeleted: Date;
   name: String;
   category: String;
   price: Number;
