@@ -21,9 +21,7 @@ export class AdminComponent implements OnInit {
 
   showForm(product) {
     if (this.showThisForm != product._id) {
-      var thisProductForm = document.getElementById(product._id);
       this.showThisForm = product._id;
-      console.log(thisProductForm);
     } else {
       this.showThisForm = '';
     }
