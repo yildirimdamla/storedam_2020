@@ -10,12 +10,15 @@ import { product_schema } from 'src/models/product_model';
 })
 export class ProductsComponent implements OnInit {
   product_list: product_schema[];
-
-  constructor(private _productsService: ProductsService) {}
-  ngOnInit(): void {
+  load() {
     this._productsService.GetAllProducts().subscribe((res) => {
       this.product_list = res;
       console.log(this.product_list);
     });
+  }
+
+  constructor(private _productsService: ProductsService) {}
+  ngOnInit(): void {
+    this.load();
   }
 }
