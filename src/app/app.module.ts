@@ -8,7 +8,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { BurgerNavComponent } from './home/burger-nav/burger-nav.component';
+
 import { FooterComponent } from './home/footer/footer.component';
 import { ProductsComponent } from './home/products/products.component';
 import { HeaderComponent } from './home/header/header.component';
@@ -21,7 +21,7 @@ import { AdminComponent } from './admin/admin.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    BurgerNavComponent,
+
     FooterComponent,
     ProductsComponent,
     HeaderComponent,
