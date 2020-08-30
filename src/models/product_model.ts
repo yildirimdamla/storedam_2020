@@ -5,6 +5,7 @@ export class product_schema {
   isDeleted: Date;
   name: String;
   category: String;
+  categoryDescription: String;
   price: Number;
   stockNumber: Number;
   pictures: [];
@@ -13,6 +14,11 @@ export class product_schema {
   size: String;
   sort: Number;
   code: String;
+}
+
+export class Category {
+  category: String;
+  label: String;
 }
 
 export const columnlist = [
@@ -44,6 +50,7 @@ export const columnlist = [
   { key: 'edit', value: 'Değiştir' },
   { key: 'delete', value: 'Sil' },
 ];
+
 export class tableoperations {
   static sortbyString(item: any, rows) {
     function dynamicsort(property) {
@@ -68,5 +75,36 @@ export class tableoperations {
       };
     }
     rows.sort(dynamicsort(item.key));
+  }
+}
+
+export class FilteringOperations {
+  static filterbyCategory(selectedCategory) {
+    var allProducts = document.getElementsByClassName('FilteredItems');
+    // making Active Class
+    var allCategoryList = document.getElementById('categoryFilterList')
+      .children;
+    console.log(allCategoryList);
+    for (let index = 0; index < allCategoryList.length; index++) {
+      if (
+        allCategoryList[index].classList.contains('active') &&
+        !allCategoryList[index].classList.contains(selectedCategory)
+      ) {
+        allCategoryList[index].classList.remove('active');
+      } else if (allCategoryList[index].classList.contains(selectedCategory)) {
+        allCategoryList[index].classList.add('active');
+      }
+    }
+    // End of making Active Class
+    //  Showing Filtered Product
+    for (let index = 0; index < allProducts.length; index++) {
+      if (allProducts[index].classList.contains(selectedCategory)) {
+        console.log('hel');
+        allProducts[index].setAttribute('style', 'display: block;');
+      } else {
+        allProducts[index].setAttribute('style', 'display: none;');
+      }
+    }
+    // End Of Showing Filtered Product
   }
 }

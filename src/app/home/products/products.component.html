@@ -1,75 +1,91 @@
 <!-- Featured Section Begin -->
 <section class="featured spad">
   <div class="container">
-    <div class="row">
+    <div
+      class="row"
+      [style.display]="isFilterRowInisable ? 'none' : 'inline'"
+      id="filteringRow"
+    >
       <div class="col-lg-12">
         <!-- <div class="section-title">
           <h2>Featured Product</h2>
         </div> -->
         <div class="featured__controls">
-          <ul>
-            <li data-filter="*" class="active">Hepsi</li>
-            <li data-filter=".recel_marmelat">Reçel & Marmelat</li>
-            <li data-filter=".salca">Salça</li>
-            <li data-filter=".tursu">Turşu</li>
-            <li data-filter=".zeytinyag">Zeytinyağ</li>
+          <ul id="categoryFilterList">
+            <li
+              (click)="showProductList(defaultFilterSelections)"
+              class="{{ defaultFilterSelections }}"
+            >
+              Hepsi
+            </li>
+            <ng-container *ngFor="let c of categoryObject">
+              <li
+                class=" {{ c.category }}"
+                (click)="showProductList(c.category)"
+              >
+                {{ c.label }}
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>
     </div>
     <div class="row featured__filter">
-      <div
-        *ngFor="let product of product_list"
-        class="col-lg-3 col-md-4 col-sm-6 mix {{ product.category }}"
-      >
-        <div class="featured__item">
-          <div
-            class="featured__item__pic set-bg"
-            style="background-image: url('assets/img/product/{{
-              product.pictures[0]
-            }}');"
-          >
-            <ul class="featured__item__pic__hover">
-              <li>
-                <a><i class="fa fa-heart"></i></a>
-              </li>
-              <li>
-                <a><i class="fa fa-retweet"></i></a>
-              </li>
-              <li>
-                <a><i class="fa fa-shopping-cart"></i></a>
-              </li>
-            </ul>
-          </div>
-          <div class="featured__item__text">
-            <h6>
-              <a>{{ product.name }}</a>
-            </h6>
-            <h5>
-              {{ product.price }}
-              <span class=""
-                ><svg
-                  style="height: 15px"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="lira-sign"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                  class="svg-inline--fa fa-lira-sign fa-w-12 fa-2x"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M371.994 256h-48.019C317.64 256 312 260.912 312 267.246 312 368 230.179 416 144 416V256.781l134.603-29.912A12 12 0 0 0 288 215.155v-40.976c0-7.677-7.109-13.38-14.603-11.714L144 191.219V160.78l134.603-29.912A12 12 0 0 0 288 119.154V78.179c0-7.677-7.109-13.38-14.603-11.714L144 95.219V44c0-6.627-5.373-12-12-12H76c-6.627 0-12 5.373-12 12v68.997L9.397 125.131A12 12 0 0 0 0 136.845v40.976c0 7.677 7.109 13.38 14.603 11.714L64 178.558v30.439L9.397 221.131A12 12 0 0 0 0 232.845v40.976c0 7.677 7.109 13.38 14.603 11.714L64 274.558V468c0 6.627 5.373 12 12 12h79.583c134.091 0 223.255-77.834 228.408-211.592.261-6.782-5.211-12.408-11.997-12.408z"
-                    class=""
-                  ></path>
-                </svg>
-              </span>
-            </h5>
+      <ng-container *ngFor="let product of product_list">
+        <div
+          class="col-lg-3 col-md-4 col-sm-6 FilteredItems all {{
+            product.category
+          }}"
+        >
+          <div class="featured__item">
+            <div
+              class="featured__item__pic set-bg"
+              style="background-image: url('assets/img/product/{{
+                product.pictures[0]
+              }}');"
+            >
+              <ul class="featured__item__pic__hover">
+                <li>
+                  <a><i class="fa fa-heart"></i></a>
+                </li>
+                <li>
+                  <a><i class="fa fa-retweet"></i></a>
+                </li>
+                <li>
+                  <a><i class="fa fa-shopping-cart"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6>
+                <a>{{ product.name }}</a>
+              </h6>
+              <h5>
+                {{ product.price }}
+                <span class=""
+                  ><svg
+                    style="height: 15px"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="lira-sign"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                    class="svg-inline--fa fa-lira-sign fa-w-12 fa-2x"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M371.994 256h-48.019C317.64 256 312 260.912 312 267.246 312 368 230.179 416 144 416V256.781l134.603-29.912A12 12 0 0 0 288 215.155v-40.976c0-7.677-7.109-13.38-14.603-11.714L144 191.219V160.78l134.603-29.912A12 12 0 0 0 288 119.154V78.179c0-7.677-7.109-13.38-14.603-11.714L144 95.219V44c0-6.627-5.373-12-12-12H76c-6.627 0-12 5.373-12 12v68.997L9.397 125.131A12 12 0 0 0 0 136.845v40.976c0 7.677 7.109 13.38 14.603 11.714L64 178.558v30.439L9.397 221.131A12 12 0 0 0 0 232.845v40.976c0 7.677 7.109 13.38 14.603 11.714L64 274.558V468c0 6.627 5.373 12 12 12h79.583c134.091 0 223.255-77.834 228.408-211.592.261-6.782-5.211-12.408-11.997-12.408z"
+                      class=""
+                    ></path>
+                  </svg>
+                </span>
+              </h5>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </section>
