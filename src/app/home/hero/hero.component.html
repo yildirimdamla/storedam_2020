@@ -35,14 +35,33 @@
             </div>
           </div>
           <div class="hero__search__form">
-            <form action="#">
+            <div>
               <div class="hero__search__categories">
-                All Categories
-                <span class="arrow_carrot-down"></span>
+                <div class="dropdown" (mouseover)="showFilteredCategory()">
+                  <a class="dropbtn" id="selectedCategory">{{
+                    defaultAllCategories
+                  }}</a>
+                  <div class="dropdown-content">
+                    <a
+                      *ngFor="let c of categoryObject"
+                      class=" {{ c.category }}"
+                      (click)="selectFilteredCategory(c)"
+                    >
+                      {{ c.label }}
+                    </a>
+                    <a (click)="selectFilteredCategory(defaultAllCategories)">{{
+                      defaultAllCategories
+                    }}</a>
+                  </div>
+                </div>
               </div>
-              <input type="text" placeholder="What do yo u need?" />
-              <button type="submit" class="site-btn">SEARCH</button>
-            </form>
+              <input
+                type="text"
+                placeholder="Ürünler içerisinde ara?"
+                [(ngModel)]="searchText"
+              />
+              <button class="site-btn" (click)="searchFunction()">Ara</button>
+            </div>
           </div>
         </div>
         <!-- <div

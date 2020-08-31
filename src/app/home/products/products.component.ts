@@ -14,7 +14,7 @@ import {
 })
 export class ProductsComponent implements OnInit {
   product_list: product_schema[];
-  categoryObject: Category[] = [];
+  public categoryObject: Category[] = [];
   public defaultFilterSelections = 'all';
 
   isFilterRowInisable: boolean = false;
@@ -26,28 +26,10 @@ export class ProductsComponent implements OnInit {
     this._productsService.GetAllProducts().subscribe((res) => {
       this.product_list = res;
 
-      // Adding Category
-      var thisCategoryAdded = false;
-      for (var i = 0; i < this.product_list.length; i++) {
-        var newC = new Category();
-        newC.category = this.product_list[i].category;
-        newC.label = this.product_list[i].categoryDescription;
-
-        for (let index = 0; index < this.categoryObject.length; index++) {
-          if (this.categoryObject[index].category == newC.category) {
-            thisCategoryAdded = true;
-          } else {
-            thisCategoryAdded = false;
-          }
-        }
-        if (thisCategoryAdded == false) {
-          this.categoryObject.push(newC);
-          thisCategoryAdded = true;
-        } else {
-          thisCategoryAdded = true;
-        }
-      }
-      // End of Adding Category
+      FilteringOperations.addingCategory(
+        this.product_list,
+        this.categoryObject
+      );
 
       FilteringOperations.filterbyCategory(this.defaultFilterSelections);
     });

@@ -78,13 +78,46 @@ export class tableoperations {
   }
 }
 
+export var commonCategoryList: Category[];
+
 export class FilteringOperations {
+  static getCommonCategoryList() {
+    return commonCategoryList;
+  }
+
+  static addingCategory(product_list, categoryObject) {
+    // Adding Category
+    var thisCategoryAdded = false;
+    for (var i = 0; i < product_list.length; i++) {
+      var newC = new Category();
+      newC.category = product_list[i].category;
+      newC.label = product_list[i].categoryDescription;
+
+      for (let index = 0; index < categoryObject.length; index++) {
+        if (categoryObject[index].category == newC.category) {
+          thisCategoryAdded = true;
+        } else {
+          thisCategoryAdded = false;
+        }
+      }
+      if (thisCategoryAdded == false) {
+        categoryObject.push(newC);
+        thisCategoryAdded = true;
+      } else {
+        thisCategoryAdded = true;
+      }
+      commonCategoryList = categoryObject;
+    }
+    console.log(commonCategoryList);
+    // End of Adding Category
+  }
+
   static filterbyCategory(selectedCategory) {
     var allProducts = document.getElementsByClassName('FilteredItems');
     // making Active Class
     var allCategoryList = document.getElementById('categoryFilterList')
       .children;
-    console.log(allCategoryList);
+
     for (let index = 0; index < allCategoryList.length; index++) {
       if (
         allCategoryList[index].classList.contains('active') &&
@@ -99,7 +132,6 @@ export class FilteringOperations {
     //  Showing Filtered Product
     for (let index = 0; index < allProducts.length; index++) {
       if (allProducts[index].classList.contains(selectedCategory)) {
-        console.log('hel');
         allProducts[index].setAttribute('style', 'display: block;');
       } else {
         allProducts[index].setAttribute('style', 'display: none;');

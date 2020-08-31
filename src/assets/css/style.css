@@ -561,7 +561,7 @@ ol {
 -----------------------*/
 
 .hero {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .hero.hero-normal {
@@ -634,7 +634,7 @@ ol {
 }
 
 .hero__search {
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 30px;
 }
 
@@ -646,8 +646,48 @@ ol {
   float: right;
   margin-right: 45px;
 }
+.dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
-.hero__search__form form .hero__search__categories {
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #7fad39;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* .dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+} */
+
+.hero__search__form div .hero__search__categories {
   width: 30%;
   float: left;
   font-size: 16px;
@@ -658,7 +698,7 @@ ol {
   position: relative;
 }
 
-.hero__search__form form .hero__search__categories:after {
+.hero__search__form div .hero__search__categories:after {
   position: absolute;
   right: 0;
   top: 14px;
@@ -669,13 +709,13 @@ ol {
   content: "";
 }
 
-.hero__search__form form .hero__search__categories span {
+.hero__search__form div .hero__search__categories span {
   position: absolute;
   right: 14px;
   top: 14px;
 }
 
-.hero__search__form form input {
+.hero__search__form div input {
   width: 70%;
   border: none;
   height: 48px;
@@ -684,11 +724,11 @@ ol {
   padding-left: 20px;
 }
 
-.hero__search__form form input::placeholder {
+.hero__search__form div input::placeholder {
   color: #b2b2b2;
 }
 
-.hero__search__form form button {
+.hero__search__form div button {
   position: absolute;
   right: 0;
   top: -1px;
@@ -848,6 +888,13 @@ ol {
 
 .featured__controls ul li:last-child {
   margin-right: 0;
+}
+.featured__filter {
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -ms-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
 }
 
 .featured__item {
@@ -3189,10 +3236,10 @@ ol {
   .hero__search__form {
     width: 100%;
   }
-  .hero__search__form form input {
+  .hero__search__form div input {
     width: 100%;
   }
-  .hero__search__form form .hero__search__categories {
+  .hero__search__form div .hero__search__categories {
     display: none;
   }
   .hero__search__phone {
@@ -3438,7 +3485,7 @@ ol {
 /* Small Device = 320px */
 
 @media only screen and (max-width: 479px) {
-  .hero__search__form form .hero__search__categories {
+  .hero__search__form div .hero__search__categories {
     display: none;
   }
   .featured__controls ul li {
