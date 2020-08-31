@@ -19,10 +19,12 @@ export class HeroComponent implements OnInit {
     console.log(selected);
     if (selected != this.defaultAllCategories) {
       document.getElementById('selectedCategory').innerHTML = selected.label;
+      FilteringOperations.filterbyCategory(selected.category);
     } else if (selected == this.defaultAllCategories) {
       document.getElementById(
         'selectedCategory'
       ).innerHTML = this.defaultAllCategories;
+      FilteringOperations.filterbyCategory('all');
     }
   }
   searchFunction() {
