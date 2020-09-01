@@ -38,9 +38,12 @@
             <div>
               <div class="hero__search__categories">
                 <div class="dropdown" (mouseover)="showFilteredCategory()">
-                  <a class="dropbtn" id="selectedCategory">{{
-                    defaultAllCategories
-                  }}</a>
+                  <a
+                    class="dropbtn"
+                    id="selectedCategory"
+                    [(selectedC)]="selectedCategory"
+                    >{{ defaultAllCategories }}</a
+                  >
                   <div class="dropdown-content">
                     <a
                       *ngFor="let c of categoryObject"
@@ -59,8 +62,9 @@
                 type="text"
                 placeholder="Ürünler içerisinde ara?"
                 [(ngModel)]="searchText"
+                (keyup)="searchFunction()"
               />
-              <button class="site-btn" (click)="searchFunction()">Ara</button>
+              <!-- <button class="site-btn" (click)="searchFunction()">Ara</button> -->
             </div>
           </div>
         </div>

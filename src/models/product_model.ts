@@ -77,7 +77,7 @@ export class tableoperations {
     rows.sort(dynamicsort(item.key));
   }
 }
-
+export var allProducts: product_schema[];
 export var commonCategoryList: Category[];
 
 export class FilteringOperations {
@@ -138,5 +138,24 @@ export class FilteringOperations {
       }
     }
     // End Of Showing Filtered Product
+  }
+  static filterbySearch(searchText, filterbyCategory) {
+    searchText = searchText.toUpperCase();
+    var allProducts = document.getElementsByClassName('FilteredItems');
+
+    console.log('start');
+    for (let index = 0; index < allProducts.length; index++) {
+      if (
+        allProducts[index]
+          .getElementsByClassName('featured__item__text')[0]
+          .innerText.toUpperCase()
+          .indexOf(searchText) > -1
+      ) {
+        allProducts[index].style.display = 'block';
+      } else {
+        allProducts[index].style.display = 'none';
+      }
+    }
+    console.log(allProducts[0].children);
   }
 }
