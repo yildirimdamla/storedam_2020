@@ -139,23 +139,35 @@ export class FilteringOperations {
     }
     // End Of Showing Filtered Product
   }
+
+  static showAllProduct() {
+    var allProducts = document.getElementsByClassName('FilteredItems');
+    for (let index = 0; index < allProducts.length; index++) {
+      allProducts[index].style.display = 'block';
+    }
+  }
+
   static filterbySearch(searchText, filterbyCategory) {
     searchText = searchText.toUpperCase();
     var allProducts = document.getElementsByClassName('FilteredItems');
+    var isContainWord = new Boolean();
+    var isSelectedCategory = new Boolean();
 
-    console.log('start');
     for (let index = 0; index < allProducts.length; index++) {
-      if (
+      isContainWord =
         allProducts[index]
           .getElementsByClassName('featured__item__text')[0]
           .innerText.toUpperCase()
-          .indexOf(searchText) > -1
-      ) {
+          .indexOf(searchText) > -1;
+      isSelectedCategory = allProducts[index].classList.contains(
+        filterbyCategory
+      );
+      if (isContainWord && isSelectedCategory == true) {
+        console.log(allProducts[index]);
         allProducts[index].style.display = 'block';
       } else {
         allProducts[index].style.display = 'none';
       }
     }
-    console.log(allProducts[0].children);
   }
 }

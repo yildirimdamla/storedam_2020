@@ -43,6 +43,7 @@ export class HeroComponent implements OnInit {
       FilteringOperations.filterbySearch(this.searchText, this.selectedC);
     } else {
       document.getElementById('filteringRow').style.display = 'inline';
+      FilteringOperations.showAllProduct();
     }
   }
 
