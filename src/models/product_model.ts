@@ -77,7 +77,7 @@ export class tableoperations {
     rows.sort(dynamicsort(item.key));
   }
 }
-export var allProducts: product_schema[];
+
 export var commonCategoryList: Category[];
 
 export class FilteringOperations {
@@ -143,7 +143,8 @@ export class FilteringOperations {
   static showAllProduct() {
     var allProducts = document.getElementsByClassName('FilteredItems');
     for (let index = 0; index < allProducts.length; index++) {
-      allProducts[index].style.display = 'block';
+      // allProducts[index].style.display = 'block';
+      allProducts[index].setAttribute('style', 'display:block');
     }
   }
 
@@ -157,16 +158,17 @@ export class FilteringOperations {
       isContainWord =
         allProducts[index]
           .getElementsByClassName('featured__item__text')[0]
-          .innerText.toUpperCase()
+          .getAttribute('innerText')
+          .toUpperCase()
           .indexOf(searchText) > -1;
       isSelectedCategory = allProducts[index].classList.contains(
         filterbyCategory
       );
       if (isContainWord && isSelectedCategory == true) {
         console.log(allProducts[index]);
-        allProducts[index].style.display = 'block';
+        allProducts[index].setAttribute('style', 'display:block');
       } else {
-        allProducts[index].style.display = 'none';
+        allProducts[index].setAttribute('style', 'display:none');
       }
     }
   }

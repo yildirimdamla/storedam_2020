@@ -9,10 +9,12 @@ import { ConstantPool } from '@angular/compiler';
 })
 export class HeroComponent implements OnInit {
   categoryObject: Category[];
+  selectedCategory: String;
+
   searchText: string;
   defaultAllCategories = 'Bütün Kategoriler';
   defaultSelectedCetagories = 'all';
-  selectedC: String = this.defaultSelectedCetagories;
+  name: String = this.defaultSelectedCetagories;
 
   showFilteredCategory() {
     this.categoryObject = FilteringOperations.getCommonCategoryList();
@@ -23,24 +25,24 @@ export class HeroComponent implements OnInit {
     if (selected != this.defaultAllCategories) {
       document.getElementById('selectedCategory').innerHTML = selected.label;
       FilteringOperations.filterbyCategory(selected.category);
-      this.selectedC = selected.category;
+      this.name = selected.category;
     } else if (selected == this.defaultAllCategories) {
       document.getElementById(
         'selectedCategory'
       ).innerHTML = this.defaultAllCategories;
       FilteringOperations.filterbyCategory(this.defaultSelectedCetagories);
-      this.selectedC = this.defaultSelectedCetagories;
+      this.name = this.defaultSelectedCetagories;
     }
   }
   searchFunction() {
-    console.log(this.selectedC);
+    console.log(this.name);
     if (
       this.searchText != null &&
       this.searchText != '' &&
       this.searchText != ' '
     ) {
       document.getElementById('filteringRow').style.display = 'none';
-      FilteringOperations.filterbySearch(this.searchText, this.selectedC);
+      FilteringOperations.filterbySearch(this.searchText, this.name);
     } else {
       document.getElementById('filteringRow').style.display = 'inline';
       FilteringOperations.showAllProduct();
