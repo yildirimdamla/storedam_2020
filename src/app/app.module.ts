@@ -16,12 +16,13 @@ import { HeroComponent } from './home/hero/hero.component';
 import { CategoriesComponent } from './home/categories/categories.component';
 import { BlogComponent } from './home/blog/blog.component';
 import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-
+    UserComponent,
     FooterComponent,
     ProductsComponent,
     HeaderComponent,
@@ -29,6 +30,7 @@ import { AdminComponent } from './admin/admin.component';
     CategoriesComponent,
     BlogComponent,
     AdminComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
