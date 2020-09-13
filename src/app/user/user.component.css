@@ -1,0 +1,24 @@
+a:hover {
+  color: #224abe;
+  text-decoration: underline;
+}
+
+form.user input {
+  border: 1px solid #ebebeb;
+  border-radius: 0;
+}
+
+form.user input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(127, 173, 57, 0.5);
+}
+button.btn {
+  background: #7fad39;
+  border: none;
+}
+button.btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(127, 173, 57, 0.5);
+}
+button.small:hover {
+  color: #224abe;
+  text-decoration: underline;
+}
