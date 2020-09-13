@@ -2,7 +2,7 @@ export class product_schema {
   _id: string;
   creatingDate: Date;
   updatedDate: Date;
-  isDeleted: Date;
+  isDeleted: Boolean;
   name: String;
   category: String;
   categoryDescription: String;
@@ -158,8 +158,8 @@ export class FilteringOperations {
       isContainWord =
         allProducts[index]
           .getElementsByClassName('featured__item__text')[0]
-          .getAttribute('innerText')
-          .toUpperCase()
+          .getElementsByTagName('a')[0]
+          .innerText.toUpperCase()
           .indexOf(searchText) > -1;
       isSelectedCategory = allProducts[index].classList.contains(
         filterbyCategory
